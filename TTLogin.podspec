@@ -18,6 +18,6 @@ Pod::Spec.new do |s|
   s.dependency 'Realm', '~> 1.1.0'
   s.dependency 'RealmSwift', '~> 1.1.0'
 
-  s.preserve_paths      = 'TTLogin'
+  s.preserve_paths      = 'TTLogin/TTLogin.framework'
   s.vendored_frameworks = 'TTLogin/TTLogin.framework'
 end
