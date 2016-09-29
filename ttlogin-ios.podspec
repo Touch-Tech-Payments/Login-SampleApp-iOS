@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                = 'TTLogin'
-  s.version             = '0.0.2'
+  s.version             = '0.0.1'
   s.summary             = 'The TouchTech Login iOS SDK, for integrating TouchTech Login into your iOS application.'
   s.license             = { :type => "Apache 2.0", :file => "TTLogin/LICENSE" }
   s.authors             = {"David Parsons"=>"dave@touchtechpayments.com"}
