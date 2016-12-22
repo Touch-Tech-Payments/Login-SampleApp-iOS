@@ -1,0 +1,10 @@
+framework module TTLogin {
+  umbrella header "TTLogin.h"
+
+  export *
+  module * { export * }
+}
+
+module TTLogin.Swift {
+    header "TTLogin-Swift.h"
+}
