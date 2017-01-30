@@ -140,19 +140,33 @@ SWIFT_PROTOCOL("_TtP7TTLogin11TTLCallback_")
 @protocol TTLCallback
 - (void)onError:(NSError * _Nonnull)e;
 - (void)onSuccess;
-- (void)onFallback;
 @end
 
+@protocol TTPinEntryDelegate;
 
 SWIFT_CLASS("_TtC7TTLogin7TTLogin")
 @interface TTLogin : NSObject
-+ (TTLogin * _Nonnull)getInstanceWithApiKey:(NSString * _Nonnull)apiKey;
++ (void)setApiKey:(NSString * _Nonnull)apiKey;
++ (void)setDev:(BOOL)enabled;
++ (TTLogin * _Nonnull)getInstance;
 - (enum TTLAppVersion)appVersionStatus;
-- (void)registerWithToken:(NSString * _Nonnull)registrationToken callback:(id <TTLCallback> _Nonnull)callback;
-- (void)authenticateWithAccount:(TTLAccount * _Nonnull)account withToken:(NSString * _Nonnull)token callback:(id <TTLCallback> _Nonnull)callback;
-- (void)unregisterWithAccount:(TTLAccount * _Nonnull)account callback:(id <TTLCallback> _Nonnull)callback;
+- (void)registerWithToken:(NSString * _Nonnull)registrationToken withPinDelegate:(id <TTPinEntryDelegate> _Nonnull)pinDelegate callback:(id <TTLCallback> _Nonnull)callback;
+- (void)authenticateAccount:(TTLAccount * _Nonnull)account forToken:(NSString * _Nonnull)token withPinDelegate:(id <TTPinEntryDelegate> _Nonnull)pinDelegate callback:(id <TTLCallback> _Nonnull)callback;
+- (void)unregisterAccount:(TTLAccount * _Nonnull)account callback:(id <TTLCallback> _Nonnull)callback;
 - (NSArray<TTLAccount *> * _Nonnull)getRegisteredAccounts;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+SWIFT_PROTOCOL("_TtP7TTLogin18TTPinEntryDelegate_")
+@protocol TTPinEntryDelegate
+@property (nonatomic, readonly) BOOL useTouchID;
+/**
+  Area to prompt for PIN from user.
+  \param processPin callback to pass PIN to once retrieved
+
+*/
+- (void)promptForPin:(void (^ _Nonnull)(NSString * _Nonnull))processPin;
 @end
 
 
